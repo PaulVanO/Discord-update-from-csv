@@ -72,7 +72,11 @@ async def on_message(message):
                             member = get(
                                 guild.members, name=row
                             )
+                            # can't get member object with name
+                            if not member:
+                                member = get(guild.members, display_name=row)
 
+                            # can't get member object with nickname
                             if not member:
                                 bypassed_members.append(row)
                             else:
