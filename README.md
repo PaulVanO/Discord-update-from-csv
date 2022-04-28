@@ -44,7 +44,7 @@ The bot looks for the discord name in column 2.  No matter how many columns or r
 be in the 2nd column of data AND your data must have a header row, or risk your first row of values being skipped.
 
 
-Simply update your members.csv to any channel the bot has access to, include the role ID for the role you wish to grant this list of members,
+Simply upload your members.csv to any channel the bot has access to, include the role ID for the role you wish to grant this list of members,
 and press enter.   That's it!
 
 You will either recive a message that ALL members were updated to your submitted role OR
