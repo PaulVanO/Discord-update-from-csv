@@ -27,7 +27,6 @@ def parse_csv():
 
 intents = Intents.default()
 intents.members = True
-intents.message_content = True
 bot = Client(intents=intents)
 
 
