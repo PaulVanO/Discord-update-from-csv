@@ -15,7 +15,7 @@ async def get_role(guild, role_id: int):
 
 
 def parse_csv():
-    file = open("./data/members.csv")
+    file = open("./data/members.csv", encoding='utf-8')
     data = reader(file)
     next(data)
     # starts iteration
@@ -41,12 +41,13 @@ async def on_message(message):
     """listen for message event, only from specific member or roles"""
 
     # if message author is a bot or doesn't have manage_members permissions, return
+
     if (
         message.author.bot
         or not message.channel.permissions_for(message.author).manage_roles
     ):
-        return
 
+        return
 
     guild = message.guild
 
@@ -56,7 +57,6 @@ async def on_message(message):
         # if attachments, iterate attachaments and get members.csv
         for a in message.attachments:
             if a.filename == "members.csv":
-
                 # attachment exist, check for role ID in message content
                 if message.content:
 
