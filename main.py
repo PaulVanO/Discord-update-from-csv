@@ -15,12 +15,13 @@ async def get_role(guild, role_id: int):
 
 
 def parse_csv():
+    '''parse the CSVs and yield IDs'''
     file = open("./data/members.csv", encoding='utf-8')
     data = reader(file)
     next(data)
     # starts iteration
     for row in data:
-        yield row[1].split('#')[0].strip()
+        yield row[1]
 
     file.close()
 
@@ -48,11 +49,13 @@ async def on_message(message):
 
         return
 
+    print('new mesage')
     guild = message.guild
 
     bypassed_members = []
 
     if message.attachments:
+        print('attachment')
         # if attachments, iterate attachaments and get members.csv
         for a in message.attachments:
             if a.filename == "members.csv":
@@ -68,9 +71,8 @@ async def on_message(message):
 
                         # parse the csv and add role to members
                         for row in parse_csv():
-                            member = get(
-                                guild.members, name=row
-                            )
+                            member = guild.get_member(int(row))
+
                             # can't get member object with name
                             if not member:
                                 member = get(guild.members, display_name=row)
